@@ -13,4 +13,4 @@ COPY --from=builder /install /usr/local
 COPY ./wsgi.py /
 # ENV FAVA_HOST "0.0.0.0"
 # EXPOSE 8000
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "wsgi:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "wsgi:app", "--reload"]

@@ -9,5 +9,5 @@ services:
     ports:
       - '5004:5000'
     volumes:
-      - /Users/kahnwong/Git/budget/beans.beancount:/input.beancount
+      - /Users/kahnwong/Cloud/Apps/fava/beans.beancount:/input.beancount
     restart: unless-stopped
