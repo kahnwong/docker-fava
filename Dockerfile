@@ -4,13 +4,15 @@
 FROM python:3.10-alpine as builder
 
 RUN apk add --update libxml2-dev libxslt-dev gcc musl-dev g++
-RUN pip install --prefix="/install" fava gunicorn
+COPY requirements.txt requirements.txt
+RUN pip install --prefix="/install" -r requirements.txt
 
 FROM python:alpine
 
 COPY --from=builder /install /usr/local
 
 COPY ./wsgi.py /
+
 # ENV FAVA_HOST "0.0.0.0"
 # EXPOSE 8000
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "wsgi:app", "--reload"]
