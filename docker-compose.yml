@@ -7,7 +7,7 @@ services:
       BEANCOUNT_FILE: /input.beancount
       TZ: Asia/Bangkok
     ports:
-      - '5004:5000'
+      - '5004:5000' # on mac, port 5000 is used by airplay
     volumes:
-      - /Users/kahnwong/Cloud/Apps/fava/beans.beancount:/input.beancount
+      - /Users/kahnwong/Cloud/Apps/fava/:/opt/fava/
     restart: unless-stopped
