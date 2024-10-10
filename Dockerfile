@@ -1,15 +1,9 @@
-# adapted from https://github.com/beancount/fava/blob/main/contrib/docker/Dockerfile
-# gunicorn ref: https://flask.palletsprojects.com/en/1.1.x/deploying/wsgi-standalone/#gunicorn
+FROM python:3.12-slim-bookworm
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
-FROM python:3.11-alpine as builder
-
-RUN apk add --update libxml2-dev libxslt-dev gcc musl-dev g++
-COPY requirements.txt requirements.txt
-RUN pip install --prefix="/install" -r requirements.txt
-
-FROM python:3.11-alpine
-
-COPY --from=builder /install /usr/local
+ENV PATH=/root/.local/bin:$PATH
+ADD requirements.txt .
+RUN uv tool install $(cat requirements.txt | xargs echo)
 
 WORKDIR /opt/app
 COPY entrypoint.sh .
