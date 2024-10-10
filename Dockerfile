@@ -11,8 +11,9 @@ FROM python:3.11-alpine
 
 COPY --from=builder /install /usr/local
 
-COPY ./wsgi.py /
+WORKDIR /opt/app
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
 
-# ENV FAVA_HOST "0.0.0.0"
 EXPOSE 5000
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "wsgi:app", "--reload"]
+ENTRYPOINT ["sh", "entrypoint.sh"]
