@@ -1,9 +1,7 @@
 FROM python:3.12-slim-bookworm
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
-
-ENV PATH=/root/.local/bin:$PATH
-ADD requirements.txt .
-RUN uv tool install $(cat requirements.txt | xargs echo)
+# hadolint ignore=DL3045
+COPY requirements.txt .
+RUN pip install -r requirements.txt --no-cache-dir
 
 WORKDIR /opt/app
 COPY entrypoint.sh .
