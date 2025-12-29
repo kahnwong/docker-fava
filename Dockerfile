@@ -1,4 +1,4 @@
-FROM python:3.13-slim-trixie
+FROM python:3.14-slim-trixie
 # hadolint ignore=DL3045
 COPY requirements.txt .
 RUN pip install -r requirements.txt --no-cache-dir
