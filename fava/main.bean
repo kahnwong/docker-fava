@@ -1,0 +1,38 @@
+;; ***************************************************************** ;; OPTIONS & SETTINGS
+;; ***************************************************************** option "title" "Personal Finances 2025"
+option "operating_currency" "USD"
+
+;; ***************************************************************** ;; ACCOUNT DECLARATIONS
+;; ***************************************************************** ;; Assets: What you own
+1990-01-01 open Assets:Checking             USD
+1990-01-01 open Assets:Savings              USD
+
+;; Liabilities: What you owe
+1990-01-01 open Liabilities:CreditCard      USD
+
+;; Income: Where money comes from
+1990-01-01 open Income:Salary               USD
+
+;; Expenses: Where money goes
+1990-01-01 open Expenses:Food:Groceries     USD
+1990-01-01 open Expenses:Housing:Rent       USD
+1990-01-01 open Expenses:Transport:Gas      USD
+
+;; Equity: Opening balances
+1990-01-01 open Equity:Opening-Balances
+
+;; ***************************************************************** ;; TRANSACTIONS
+;; ***************************************************************** ;; Setting the starting balance
+2025-01-01 * "Opening Balance"
+  Assets:Checking                          1500.00 USD
+  Equity:Opening-Balances
+
+;; Monthly Rent (Automatic payment)
+2025-01-01 * "Landlord" "Monthly Rent"
+  Expenses:Housing:Rent                    1200.00 USD
+  Assets:Checking
+
+;; Grocery Shopping (Using a credit card)
+2025-01-05 * "Whole Foods Weekly Groceries"
+  Expenses:Food:Groceries                    85.50 USD
+  Liabilities:CreditCard
