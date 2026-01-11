@@ -3,7 +3,6 @@ services:
     build: .
     container_name: fava
     environment:
-      BEANCOUNT_FILE: /opt/fava/main.bean
       TZ: Asia/Bangkok
     ports:
       - '5004:5000' # on mac, port 5000 is used by airplay

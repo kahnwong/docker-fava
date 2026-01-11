@@ -11,7 +11,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN uv venv && uv pip install -r requirements.txt --no-cache-dir
 
-FROM gcr.io/distroless/cc:debug
+FROM gcr.io/distroless/cc:latest
 
 COPY --from=builder --chown=python:python /python /python
 
